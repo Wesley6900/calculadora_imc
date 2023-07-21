@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="estilizacao.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="borda_geral">
+        <h1>Coloque o Sua altura e peso</h1>
+        <div>
+            <div>
+                <h5>Peso(ex: 69.2)</h5>
+                <input type="number" inputmode="numeric" id="Peso" placeholder="0kg"> 
+            </div>
+
+            <div>
+                <h5>Altura (ex: 1.70)</h5>
+                <input type="number" inputmode="numeric" id="Altura" placeholder="0,00">  
+            </div><br><br>
+            
+            <button onclick="imc()" id="butao_calcular">Calcular</button><br><br>
+            <span id="resultado_geral"></span>
+        </div>
+    </div>
+
+    <script>
+        var altura = window.document.getElementById('Altura');
+        var peso = window.document.getElementById('Peso');
+
+        var resultado = window.document.getElementById('resultado_geral');
+        var video_gorda = window.document.getElementById('video_d_gorda');
+        resultado.innerHTML = '';
+
+        var apertar = window.document.getElementById('butao_calcular');
+
+        apertar.addEventListener('click',clickar);
+        apertar.addEventListener('mouseout',);
+        apertar.addEventListener('mousedown',);
+
+        function clickar() {
+            apertar.style.background = '#0000a3';
+            setTimeout(() =>{
+                apertar.style.background = '#026d02';
+            },10)
+        }
+
+        function imc(){
+            var calcul = peso.value / (altura.value * altura.value);
+
+            if (calcul < 18.5) {
+                resultado.innerHTML = Number.parseFloat(calcul).toFixed(2).replace('.',',') + ' <br>Magreza ' + 'Obesidade 0';
+            }
+
+            if (calcul >= 18.5 && calcul <= 24.9) {
+                resultado.innerHTML = Number.parseFloat(calcul).toFixed(2).replace('.',',') + ' <br>Normal ' + 'Obesidade 0';
+            }
+
+            if (calcul >= 25.0 && calcul <= 29.9) {
+                resultado.innerHTML = Number.parseFloat(calcul).toFixed(2).replace('.',',') + ' <br>SobrePeso ' + 'Obesidade I';
+            }
+
+            if (calcul >= 30.0 && calcul <= 39.9) {
+                resultado.innerHTML = Number.parseFloat(calcul).toFixed(2).replace('.',',') + ' <br>Obesidade ' + 'Obesidade II';
+            }
+
+            if (calcul >= 40.0) {
+                resultado.innerHTML = Number.parseFloat(calcul).toFixed(2).replace('.',',') + ' <br>ObesidadeGrave ' + 'Obesidade III';
+            }
+        }
+    </script>
+</body>
+</html>
